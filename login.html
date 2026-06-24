@@ -3,116 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de login</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f4f8;
-            font-family: sans-serif;
-        }
-
-        .card {
-            background-color: #ffffff;
-            border: 1px solid #d0dce8;
-            border-radius: 12px;
-            padding: 40px 36px;
-            width: 100%;
-            max-width: 360px;
-        }
-
-        h1 {
-            font-size: 22px;
-            font-weight: 600;
-            color: #1a3a5c;
-            margin-bottom: 24px;
-            text-align: center;
-        }
-
-        label {
-            font-size: 13px;
-            color: #4a6080;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 9px 12px;
-            border: 1px solid #c0cfe0;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #1a3a5c;
-            background-color: #f7fafc;
-            margin-bottom: 16px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            border-color: #4a90d9;
-            background-color: #fff;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #2b6cb0;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 4px;
-            transition: background-color 0.2s;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #1a4f8a;
-        }
-
-        .cadastro-link {
-            display: block;
-            text-align: center;
-            margin-top: 16px;
-            font-size: 13px;
-            color: #4a6080;
-        }
-
-        .cadastro-link a {
-            color: #2b6cb0;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .cadastro-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>KeppLog - Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="card">
-        <h1>Login</h1>
-        <form onsubmit="window.location.href='index.html'; return false;">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
-            <input type="submit" value="Entrar">
+<body class="auth-page">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <div class="auth-logo-icon">⚙</div>
+            <span class="auth-logo-name">KeppLog</span>
+        </div>
 
-            <span class="cadastro-link">Não tem conta? <a href="cadastro.html">Cadastre-se</a></span>
+        <h1 class="auth-title">Inventário Laboratorial</h1>
+        <p class="auth-subtitle">Entre para acessar o catálogo de componentes</p>
+
+        <form onsubmit="window.location.href='catalogo.html'; return false;">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-wrap">
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    <span class="input-icon">···</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <div class="input-wrap">
+                    <input type="password" id="senha" name="senha" placeholder="••••••••" required>
+                    <span class="input-icon">···</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Entrar</button>
         </form>
+
+        <p class="auth-alt">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+
+        <div class="auth-hint">💡 Dica: Use email com "admin" para acesso de administrador</div>
     </div>
 </body>
 </html>

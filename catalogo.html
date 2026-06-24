@@ -1,340 +1,257 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo</title>
-      <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-    }
-
-    body {
-      background: #f4f7fc;
-      color: #1a2634;
-      padding: 2rem 1.5rem;
-    }
-
-    .container {
-      max-width: 1440px;
-      margin: 0 auto;
-    }
-
-    /* cabeçalho */
-    .header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2.5rem;
-      border-bottom: 2px solid #d0ddee;
-      padding-bottom: 1.5rem;
-    }
-
-    .header h1 {
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .header h1 i {
-      color: #2a6f97;
-      font-size: 2rem;
-    }
-
-    .badge-git {
-      background: #1e2a3a;
-      color: #f0f6ff;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    }
-
-    .badge-git i {
-      font-size: 1.2rem;
-      color: #f0f6ff;
-    }
-
-    .badge-git a {
-      color: #9fc9ff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.2s;
-    }
-
-    .badge-git a:hover {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-
-    /* barra de filtros / categorias */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem 2rem;
-      background: #ffffff;
-      padding: 1rem 1.8rem;
-      border-radius: 60px;
-      box-shadow: 0 6px 14px rgba(0, 20, 40, 0.06);
-      margin-bottom: 2.8rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .filter-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem 1.2rem;
-    }
-
-    .filter-tabs span {
-      font-weight: 500;
-      color: #2d4056;
-      cursor: default;
-      padding: 0.3rem 0;
-      border-bottom: 2px solid transparent;
-      transition: 0.2s;
-    }
-
-    .filter-tabs span.active {
-      border-bottom-color: #2a6f97;
-      color: #0b2b3f;
-    }
-
-    .filter-tabs span i {
-      margin-right: 6px;
-      color: #3d6b8f;
-    }
-
-    .search-box {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #eef3fa;
-      padding: 0.3rem 1rem 0.3rem 1.5rem;
-      border-radius: 40px;
-    }
-
-    .search-box i {
-      color: #5b7a9a;
-    }
-
-    .search-box input {
-      border: none;
-      background: transparent;
-      padding: 0.6rem 0;
-      font-size: 0.95rem;
-      outline: none;
-      min-width: 160px;
-      color: #1a2a3a;
-    }
-
-    .search-box input::placeholder {
-      color: #7a93af;
-      font-weight: 300;
-    }
-
-    /* grade de componentes */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 2rem 1.8rem;
-      margin-top: 0.5rem;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 28px;
-      box-shadow: 0 10px 28px rgba(0, 20, 40, 0.06);
-      transition: all 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border: 1px solid #e7edf5;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 36px rgba(18, 52, 87, 0.10);
-      border-color: #c4d5e8;
-    }
-
-    .card-img {
-      background: #f0f5fe;
-      padding: 1.8rem 1rem 1rem 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 160px;
-      border-bottom: 1px solid #eef2f8;
-    }
-
-    .card-img img {
-      max-width: 100%;
-      height: auto;
-      max-height: 110px;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.04));
-      transition: 0.2s;
-    }
-
-    .card:hover .card-img img {
-      transform: scale(1.02);
-    }
-
-    .card-body {
-      padding: 1.4rem 1.2rem 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card-title {
-      font-weight: 600;
-      font-size: 1.2rem;
-      letter-spacing: -0.3px;
-      color: #142433;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-
-    .card-title i {
-      color: #2f6d96;
-      font-size: 0.95rem;
-    }
-
-    .card-sub {
-      font-size: 0.8rem;
-      color: #4a6a88;
-      background: #eaf1fa;
-      display: inline-block;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      align-self: flex-start;
-      margin: 0.3rem 0 0.8rem 0;
-      font-weight: 500;
-      letter-spacing: 0.2px;
-    }
-
-    .card-desc {
-      font-size: 0.9rem;
-      color: #2f4057;
-      line-height: 1.5;
-      margin-bottom: 0.6rem;
-      flex: 1;
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.6rem;
-      border-top: 1px solid #e3ebf5;
-      padding-top: 0.8rem;
-    }
-
-    .card-footer .code {
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.7rem;
-      background: #eef3fa;
-      padding: 0.2rem 0.8rem;
-      border-radius: 30px;
-      color: #1c3f5c;
-    }
-
-    .card-footer .tag {
-      background: #d6e3f5;
-      color: #10344e;
-      padding: 0.2rem 0.9rem;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-
-    /* mensagem de dados via github */
-    .data-source {
-      text-align: center;
-      margin: 3rem 0 1rem;
-      color: #3d5f7a;
-      font-size: 0.9rem;
-      border-top: 1px solid #d7e1ed;
-      padding-top: 2rem;
-    }
-
-    .data-source i {
-      margin: 0 6px;
-      color: #2a6f97;
-    }
-
-    .data-source a {
-      color: #1c5a7a;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .data-source a:hover {
-      text-decoration: underline;
-    }
-
-
-    
-  </style>
+    <title>KeppLog - Catálogo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<div class="container">
-        <h1>Catálogo</h1>
-     <div class="header">
-      <h1><i class="fas fa-microchip"></i> Catálogo keeplog</h1>
-    
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <div class="nav-logo-icon">⚙</div>
+            <div class="nav-brand-text">
+                <span class="nav-brand-name">KeppLog</span>
+                <span class="nav-brand-sub">Inventário Laboratorial</span>
+            </div>
         </div>
-    </div>    
+        <div class="navbar-right">
+            <span class="nav-user">👤 Usuário</span>
+            <button class="btn-sair" onclick="window.location.href='login.html'">↪ Sair</button>
+        </div>
+    </nav>
 
-    <div class="filter-bar">
-        <div class="filter-tabs"></div>
-    
-          
+    <main class="main">
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Tipos</div>
+                <div class="stat-value">22</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total em estoque</div>
+                <div class="stat-value">1.532</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Baixo estoque</div>
+                <div class="stat-value warning">5</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Indisponíveis</div>
+                <div class="stat-value danger">2</div>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="busca" placeholder="Buscar por nome, categoria, descrição..." oninput="filtrar()">
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="filter-tabs" id="tabs">
+            <button class="tab-btn active" onclick="setCategoria('Todos', this)">Todos</button>
+            <button class="tab-btn" onclick="setCategoria('Resistores', this)">Resistores</button>
+            <button class="tab-btn" onclick="setCategoria('Capacitores', this)">Capacitores</button>
+            <button class="tab-btn" onclick="setCategoria('LEDs', this)">LEDs</button>
+            <button class="tab-btn" onclick="setCategoria('Microcontroladores', this)">Microcontroladores</button>
+            <button class="tab-btn" onclick="setCategoria('Transistores', this)">Transistores</button>
+            <button class="tab-btn" onclick="setCategoria('Sensores', this)">Sensores</button>
+            <button class="tab-btn" onclick="setCategoria('Módulos', this)">Módulos</button>
+            <button class="tab-btn" onclick="setCategoria('Displays', this)">Displays</button>
+            <button class="tab-btn" onclick="setCategoria('Ferramentas', this)">Ferramentas</button>
+        </div>
+
+        <p class="result-count" id="result-count">22 componentes encontrados</p>
+
+        <!-- Components grid -->
+        <div class="components-grid" id="grid"></div>
+    </main>
+
+    <!-- Modal movimentar estoque -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-title" id="modal-title">Resistor 10kΩ</div>
+                    <div class="modal-sub" id="modal-sub">Resistores · Prateleira A1, Gaveta 1</div>
+                </div>
+                <button class="modal-close" onclick="fecharModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="estoque-box">
+                    <span class="estoque-label">Estoque atual</span>
+                    <span class="estoque-value" id="modal-estoque">150 un.</span>
+                </div>
+
+                <div class="modal-tabs">
+                    <button class="modal-tab retirada" id="tab-retirada" onclick="setTipo('retirada')">— Retirada</button>
+                    <button class="modal-tab entrada" id="tab-entrada" onclick="setTipo('entrada')">+ Entrada</button>
+                </div>
+
+                <div class="modal-field-label">Quantidade</div>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="alterarQty(-1)">−</button>
+                    <input class="qty-input" type="number" id="qty" value="1" min="1">
+                    <button class="qty-btn" onclick="alterarQty(1)">+</button>
+                </div>
+
+                <div class="modal-field-label">Motivo</div>
+                <input class="motivo-input" type="text" id="motivo" placeholder="Ex: Projeto de turma 2B">
+
+                <div class="modal-actions">
+                    <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+                    <button class="btn-registrar" id="btn-registrar" onclick="registrar()">Registrar Retirada</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="search-box">
-        <i class=""></i>
-         <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
-               
-    </div>
+    <script>
+        const componentes = [
+            { nome: 'Resistor 10kΩ', categoria: 'Resistores', desc: 'Resistor de carbono 1/4W, tolerância 5%', qtd: 150, max: 200, local: 'Prateleira A1, Gaveta 1', status: 'disponivel' },
+            { nome: 'Resistor 220Ω', categoria: 'Resistores', desc: 'Resistor de carbono 1/4W, tolerância 5%, ideal para LEDs', qtd: 320, max: 400, local: 'Prateleira A1, Gaveta 2', status: 'disponivel' },
+            { nome: 'Resistor 1kΩ', categoria: 'Resistores', desc: 'Resistor de carbono 1/4W, tolerância 5%', qtd: 210, max: 300, local: 'Prateleira A1, Gaveta 3', status: 'disponivel' },
+            { nome: 'Capacitor 100µF', categoria: 'Capacitores', desc: 'Capacitor eletrolítico 25V', qtd: 8, max: 100, local: 'Prateleira B1, Gaveta 1', status: 'baixo' },
+            { nome: 'Capacitor 10µF', categoria: 'Capacitores', desc: 'Capacitor eletrolítico 16V', qtd: 45, max: 100, local: 'Prateleira B1, Gaveta 2', status: 'disponivel' },
+            { nome: 'LED Vermelho 5mm', categoria: 'LEDs', desc: 'LED difuso 5mm, vermelho, 2V 20mA', qtd: 0, max: 200, local: 'Prateleira C1, Gaveta 1', status: 'indisponivel' },
+            { nome: 'LED Verde 5mm', categoria: 'LEDs', desc: 'LED difuso 5mm, verde, 2.2V 20mA', qtd: 95, max: 200, local: 'Prateleira C1, Gaveta 2', status: 'disponivel' },
+            { nome: 'Arduino Uno', categoria: 'Microcontroladores', desc: 'Microcontrolador ATmega328P, 14 I/O digitais', qtd: 12, max: 20, local: 'Prateleira D1, Gaveta 1', status: 'disponivel' },
+            { nome: 'Arduino Nano', categoria: 'Microcontroladores', desc: 'Microcontrolador ATmega328P compacto', qtd: 3, max: 15, local: 'Prateleira D1, Gaveta 2', status: 'baixo' },
+            { nome: 'Transistor BC547', categoria: 'Transistores', desc: 'Transistor NPN de uso geral, 45V 100mA', qtd: 180, max: 200, local: 'Prateleira E1, Gaveta 1', status: 'disponivel' },
+            { nome: 'Sensor de temperatura DHT11', categoria: 'Sensores', desc: 'Sensor digital de temperatura e umidade', qtd: 7, max: 20, local: 'Prateleira F1, Gaveta 1', status: 'baixo' },
+            { nome: 'Sensor ultrassônico HC-SR04', categoria: 'Sensores', desc: 'Sensor de distância ultrassônico 2cm-400cm', qtd: 0, max: 10, local: 'Prateleira F1, Gaveta 2', status: 'indisponivel' },
+            { nome: 'Módulo WiFi ESP8266', categoria: 'Módulos', desc: 'Módulo WiFi 802.11 b/g/n com microcontrolador', qtd: 6, max: 10, local: 'Prateleira G1, Gaveta 1', status: 'disponivel' },
+            { nome: 'Display LCD 16x2', categoria: 'Displays', desc: 'Display LCD alfanumérico 16 colunas 2 linhas', qtd: 4, max: 10, local: 'Prateleira H1, Gaveta 1', status: 'baixo' },
+            { nome: 'Multímetro Digital', categoria: 'Ferramentas', desc: 'Multímetro digital portátil com auto-range', qtd: 5, max: 8, local: 'Armário T1, Gaveta 1', status: 'disponivel' },
+        ];
 
-    <div class="catalogoGrid" id="catalogoGrid">
-        
-    </div>
+        let categoriaAtual = 'Todos';
 
-    <div class="data-source"></div>
-   <script>
-    (function(){
-        const IMAGE_BASE = 'https://raw.githubusercontent.com/KiCad/kicad-symbols/master/'
-        const Componentes =[
-            {
-                id:1,
-                name:''
+        function badgeClass(s) {
+            if (s === 'disponivel') return 'badge-disponivel';
+            if (s === 'baixo') return 'badge-baixo';
+            return 'badge-indisponivel';
+        }
+
+        function badgeText(s) {
+            if (s === 'disponivel') return 'Disponível';
+            if (s === 'baixo') return 'Baixo estoque';
+            return 'Indisponível';
+        }
+
+        function progressClass(s) {
+            if (s === 'baixo') return 'low';
+            if (s === 'indisponivel') return 'empty';
+            return '';
+        }
+
+        function renderCards(lista) {
+            const grid = document.getElementById('grid');
+            document.getElementById('result-count').textContent = lista.length + ' componentes encontrados';
+            grid.innerHTML = lista.map((c, i) => `
+                <div class="component-card">
+                    <div class="card-body">
+                        <div class="card-header">
+                            <span class="card-title">${c.nome}</span>
+                            <span class="badge ${badgeClass(c.status)}">${badgeText(c.status)}</span>
+                        </div>
+                        <div class="card-category">${c.categoria}</div>
+                        <div class="card-desc">${c.desc}</div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">📦 Quantidade: <span class="hl">&nbsp;${c.qtd} un.</span></div>
+                            <div class="card-meta-item">📍 ${c.local.replace(/(\d+)$/, '<span class="loc-hl">$1</span>')}</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill ${progressClass(c.status)}" style="width:${Math.round(c.qtd/c.max*100)}%"></div>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn-movimentar" onclick="abrirModal(${i})">⇄ Movimentar estoque</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filtrar() {
+            const q = document.getElementById('busca').value.toLowerCase();
+            let lista = componentes;
+            if (categoriaAtual !== 'Todos') lista = lista.filter(c => c.categoria === categoriaAtual);
+            if (q) lista = lista.filter(c => c.nome.toLowerCase().includes(q) || c.categoria.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q));
+            renderCards(lista);
+        }
+
+        function setCategoria(cat, btn) {
+            categoriaAtual = cat;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filtrar();
+        }
+
+        // Modal
+        let idxAtual = 0;
+        let tipoAtual = 'retirada';
+
+        function abrirModal(idx) {
+            idxAtual = idx;
+            const c = componentes[idx];
+            document.getElementById('modal-title').textContent = c.nome;
+            document.getElementById('modal-sub').textContent = c.categoria + ' · ' + c.local;
+            document.getElementById('modal-estoque').textContent = c.qtd + ' un.';
+            document.getElementById('qty').value = 1;
+            document.getElementById('motivo').value = '';
+            setTipo('retirada');
+            document.getElementById('modal').classList.add('open');
+        }
+
+        function fecharModal() {
+            document.getElementById('modal').classList.remove('open');
+        }
+
+        function setTipo(tipo) {
+            tipoAtual = tipo;
+            const tr = document.getElementById('tab-retirada');
+            const te = document.getElementById('tab-entrada');
+            const br = document.getElementById('btn-registrar');
+            if (tipo === 'retirada') {
+                tr.style.background = '#ef4444'; tr.style.color = '#fff';
+                te.style.background = '#e5e9f5'; te.style.color = '#6b7280';
+                br.textContent = 'Registrar Retirada';
+                br.className = 'btn-registrar';
+            } else {
+                te.style.background = '#22c55e'; te.style.color = '#fff';
+                tr.style.background = '#e5e9f5'; tr.style.color = '#6b7280';
+                br.textContent = 'Registrar Entrada';
+                br.className = 'btn-registrar entrada';
             }
-        ]
-    })
+        }
 
+        function alterarQty(delta) {
+            const el = document.getElementById('qty');
+            el.value = Math.max(1, parseInt(el.value) + delta);
+        }
 
-   </script>
-    
+        function registrar() {
+            const qty = parseInt(document.getElementById('qty').value);
+            const c = componentes[idxAtual];
+            if (tipoAtual === 'retirada') {
+                c.qtd = Math.max(0, c.qtd - qty);
+            } else {
+                c.qtd = c.qtd + qty;
+            }
+            c.status = c.qtd === 0 ? 'indisponivel' : c.qtd / c.max < 0.15 ? 'baixo' : 'disponivel';
+            fecharModal();
+            filtrar();
+        }
 
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) fecharModal();
+        });
+
+        renderCards(componentes);
+    </script>
 </body>
 </html>
