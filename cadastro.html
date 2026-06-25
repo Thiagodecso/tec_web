@@ -3,129 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepLog - Cadastro</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f4f8;
-            font-family: sans-serif;
-        }
-
-        .card {
-            background-color: #ffffff;
-            border: 1px solid #d0dce8;
-            border-radius: 12px;
-            padding: 40px 36px;
-            width: 100%;
-            max-width: 360px;
-        }
-
-        h1 {
-            font-size: 22px;
-            font-weight: 600;
-            color: #1a3a5c;
-            margin-bottom: 24px;
-            text-align: center;
-        }
-
-        label {
-            font-size: 13px;
-            color: #4a6080;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 9px 12px;
-            border: 1px solid #c0cfe0;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #1a3a5c;
-            background-color: #f7fafc;
-            margin-bottom: 16px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            border-color: #4a90d9;
-            background-color: #fff;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #2b6cb0;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 4px;
-            transition: background-color 0.2s;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #1a4f8a;
-        }
-
-        .login-link {
-            display: block;
-            text-align: center;
-            margin-top: 16px;
-            font-size: 13px;
-            color: #4a6080;
-        }
-
-        .login-link a {
-            color: #2b6cb0;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>KeppLog - Criar Conta</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="card">
-        <h1>Cadastro</h1>
-        <form action="" method="POST">
-            <label for="username">Nome de usuário:</label>
-            <input type="text" id="username" name="username" required>
+<body class="auth-page">
+    <div class="auth-card">
+        <div class="auth-logo">
+        <a href="catalogo.html" class="auth-logo-link">
+            <div class="auth-logo-icon">⚙</div>
+            <span class="auth-logo-name">KeppLog</span>
+        </a>
+    </div>
 
-            <label for="matricula">Matrícula:</label>
-            <input type="text" id="matricula" name="matricula" required>
+        <h1 class="auth-title">Criar Conta</h1>
+        <p class="auth-subtitle">Cadastre-se para acessar o sistema</p>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+        <form onsubmit="window.location.href='login.html'; return false;">
+            <div class="form-group">
+                <label for="nome">Nome completo</label>
+                <div class="input-wrap">
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                </div>
+            </div>
 
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-wrap">
+                    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    <span class="input-icon">···</span>
+                </div>
+            </div>
 
-            <label for="same_password">Confirmar senha:</label>
-            <input type="password" id="same_password" name="same_password" required>
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <div class="input-wrap">
+                    <input type="password" id="senha" name="senha" placeholder="••••••••" required>
+                    <span class="input-icon">···</span>
+                </div>
+            </div>
 
-            <button type="submit">Registrar</button>
+            <div class="form-group">
+                <label for="confirmar">Confirmar senha</label>
+                <div class="input-wrap">
+                    <input type="password" id="confirmar" name="confirmar" placeholder="••••••••" required>
+                    <span class="input-icon">···</span>
+                </div>
+            </div>
 
-            <span class="login-link">Já tem conta? <a href="login.html">Entrar</a></span>
+            <button type="submit" class="btn-primary">Criar conta</button>
         </form>
+
+        <p class="auth-alt">Já tem uma conta? <a href="login.html">Faça login</a></p>
     </div>
 </body>
 </html>
